@@ -42,18 +42,15 @@ public class MainActivity extends AppCompatActivity {
 
 
         EditText editText2 = (EditText) findViewById(R.id.timeRelaxid);
-        timeRelax =   Integer.parseInt(editText.getText().toString());
+        timeRelax =   Integer.parseInt(editText2.getText().toString());
 
         TextView timer = (TextView)findViewById(R.id.timeRelaxid);
-
         timer.setText(""+status);
 
         EditText editText3 = (EditText) findViewById(R.id.roundid);
-        round =   Integer.parseInt(editText.getText().toString());
+        countRound = round =   Integer.parseInt(editText3.getText().toString());
 
 
-     //   TextView timer = (TextView)findViewById(R.id.timer);
-       // char timeChar = (char)timeFight;
 
 
         mCountDownTimer  = new CountDownTimer(timeFight * timeRelax * round * 1000, 1000) {
@@ -68,7 +65,9 @@ public class MainActivity extends AppCompatActivity {
 
                     if (mTimeToGo == 0){
                         mPlayer.start();
-                            if (status == "fight"){
+                      //  if (status == "Fight") {
+
+                        if ("Fight".equals(status)) {
                                 status = "relax";
                                 mTimeToGo = timeRelax;
                                 round--;
@@ -76,9 +75,10 @@ public class MainActivity extends AppCompatActivity {
                                 TextView roundid = (TextView)findViewById(R.id.roundid);
                                 roundid.setText(""+round);
 
-                            }else
-                                mTimeToGo = timeFight;
-
+                            }else {
+                            mTimeToGo = timeFight;
+                            status = "Fight";
+                        }
 
                     }
 
@@ -90,6 +90,19 @@ public class MainActivity extends AppCompatActivity {
             }
             public void onFinish() {
                 mPlayer.start();
+
+                TextView timer = (TextView)findViewById(R.id.timer);
+                timer.setText(""+timeFight);
+
+
+                TextView timeRelaxid = (TextView)findViewById(R.id.timeRelaxid);
+                timer.setText(""+timeRelax);
+
+                TextView roundid = (TextView)findViewById(R.id.roundid);
+                roundid.setText(""+countRound);
+
+
+
             }
         }.start();
 
@@ -103,7 +116,7 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-    public void stop (View view){
+    public void Stop (View view){
 
         mCountDownTimer.cancel();
 
@@ -115,7 +128,7 @@ public class MainActivity extends AppCompatActivity {
         timer.setText(""+timeRelax);
 
         TextView roundid = (TextView)findViewById(R.id.roundid);
-        roundid.setText(""+round);
+        roundid.setText(""+countRound);
 
 
 
