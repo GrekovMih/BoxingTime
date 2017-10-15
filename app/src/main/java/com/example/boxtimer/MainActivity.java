@@ -44,11 +44,30 @@ public class MainActivity extends AppCompatActivity {
         EditText editText2 = (EditText) findViewById(R.id.timeRelaxid);
         timeRelax =   Integer.parseInt(editText2.getText().toString());
 
+
         TextView timer = (TextView)findViewById(R.id.timeRelaxid);
         timer.setText(""+status);
 
+        TextView statusid = (TextView)findViewById(R.id.statusid);
+        statusid.setText("");
+
+        TextView countroundid = (TextView)findViewById(R.id.countroundid);
+        countroundid.setText("Осталось раундов");
+
+        TextView timeid = (TextView)findViewById(R.id.timeid);
+        timeid.setText("Осталось времени");
+
+
+
         EditText editText3 = (EditText) findViewById(R.id.roundid);
         countRound = round =   Integer.parseInt(editText3.getText().toString());
+
+        View s = findViewById(R.id.start);
+        s.setVisibility(View.GONE);
+
+        View p = findViewById(R.id.pause);
+        p.setVisibility(View.VISIBLE);
+
 
 
 
@@ -79,6 +98,9 @@ public class MainActivity extends AppCompatActivity {
                             mTimeToGo = timeFight;
                             status = "Fight";
                         }
+
+                        TextView timeRelaxid = (TextView)findViewById(R.id.timeRelaxid);
+                        timeRelaxid.setText(""+status);
 
                     }
 
@@ -120,6 +142,13 @@ public class MainActivity extends AppCompatActivity {
 
         mCountDownTimer.cancel();
 
+        View s = findViewById(R.id.pause);
+        s.setVisibility(View.GONE);
+
+        View p = findViewById(R.id.start);
+        p.setVisibility(View.VISIBLE);
+
+
         TextView timer = (TextView)findViewById(R.id.timer);
         timer.setText(""+timeFight);
 
@@ -133,6 +162,22 @@ public class MainActivity extends AppCompatActivity {
 
 
     }
+
+    public void pause (View view){
+
+        mCountDownTimer.cancel();
+
+        View s = findViewById(R.id.pause);
+        s.setVisibility(View.GONE);
+
+        View p = findViewById(R.id.start);
+        p.setVisibility(View.VISIBLE);
+
+
+
+
+    }
+
 
 
 
